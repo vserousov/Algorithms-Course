@@ -25,27 +25,27 @@ IDE: Microsoft Visual Studio 2010
 
 // Swap 2 elements in array
 void swap(int* arr, int i, int j) {
-	int temp = arr[i];
-	arr[i] = arr[j];
-	arr[j] = temp;
+    int temp = arr[i];
+    arr[i] = arr[j];
+    arr[j] = temp;
 }
 
 // Quicksort with middle element in array as pivot
 void quicksort::quicksort_middle(int* arr, int n, int& depth, int& leaves) {
-	// TODO: Implement this method
-	recursive_call_qsort(arr, 0, n - 1, get_middle_pivot, depth, leaves);
+    // TODO: Implement this method
+    recursive_call_qsort(arr, 0, n - 1, get_middle_pivot, depth, leaves);
 }
 
 // Quicksort with last element in array as pivot
 void quicksort::quicksort_last(int* arr, int n, int& depth, int& leaves) {
-	// TODO: Implement this method
-	recursive_call_qsort(arr, 0, n - 1, get_last_pivot, depth, leaves);
+    // TODO: Implement this method
+    recursive_call_qsort(arr, 0, n - 1, get_last_pivot, depth, leaves);
 }
 
 // Quicksort with random pivot
 void quicksort::quicksort_rand(int* arr, int n, int& depth, int& leaves) {
-	// TODO: Implement this method
-	recursive_call_qsort(arr, 0, n - 1, get_rand_pivot, depth, leaves);
+    // TODO: Implement this method
+    recursive_call_qsort(arr, 0, n - 1, get_rand_pivot, depth, leaves);
 }
 
 // Getting position of middle pivot in array in the current bounds
@@ -53,8 +53,8 @@ void quicksort::quicksort_rand(int* arr, int n, int& depth, int& leaves) {
 // Additional space: O(1)
 // Complexity: O(1)
 int quicksort::get_middle_pivot(int from, int to) {
-	// TODO: Implement this method
-	return (from + to) / 2;
+    // TODO: Implement this method
+    return (from + to) / 2;
 }
 
 // Getting position of last pivot in array in the current bounds
@@ -62,8 +62,8 @@ int quicksort::get_middle_pivot(int from, int to) {
 // Additional space: O(1)
 // Complexity: O(1)
 int quicksort::get_last_pivot(int from, int to) {
-	// TODO: Implement this method
-	return to - 1;
+    // TODO: Implement this method
+    return to - 1;
 }
 
 // Getting position of random pivot in array in the current bounds
@@ -71,12 +71,12 @@ int quicksort::get_last_pivot(int from, int to) {
 // Additional space: O(1)
 // Complexity: O(1)
 int quicksort::get_rand_pivot(int from, int to) {
-	// TODO: Implement this method
-	default_random_engine generator;
-	generator.seed(time(0));
-	uniform_int_distribution<int> distribution(from, to - 1);
-	int rand_pivot = distribution(generator);  // generates random number
-	return rand_pivot;
+    // TODO: Implement this method
+    default_random_engine generator;
+    generator.seed(time(0));
+    uniform_int_distribution<int> distribution(from, to - 1);
+    int rand_pivot = distribution(generator);  // generates random number
+    return rand_pivot;
 }
 
 // Rearranges values in the array using pivot in the current bounds
@@ -85,33 +85,33 @@ int quicksort::get_rand_pivot(int from, int to) {
 // Complexity: O(n)
 // RETURNS: new position of the pivot in the array.
 int quicksort::recompute_with_pivot(int* arr, int from, int to, int pivot_pos) {
-	// TODO: Implement this method
-	// Current pivot
-	int x = arr[pivot_pos];
-	
-	// Main loop 
-	while (from <= to) {
+    // TODO: Implement this method
+    // Current pivot
+    int x = arr[pivot_pos];
+    
+    // Main loop 
+    while (from <= to) {
 
-		// Shift from right
-		while (arr[from] < x) {
-			from++;
-		}
+        // Shift from right
+        while (arr[from] < x) {
+            from++;
+        }
 
-		// Shift to left
-		while (arr[to] > x) {
-			to--;
-		}
+        // Shift to left
+        while (arr[to] > x) {
+            to--;
+        }
 
-		// Swap values and shift from and to
-		if (from <= to) {
-			swap(arr, from, to);
-			from++;
-			to--;
-		}
-	}
+        // Swap values and shift from and to
+        if (from <= to) {
+            swap(arr, from, to);
+            from++;
+            to--;
+        }
+    }
 
-	// Return position of pivot
-	return from;
+    // Return position of pivot
+    return from;
 }
 
 // Recursive call for qsort that sorts the array
@@ -120,76 +120,76 @@ int quicksort::recompute_with_pivot(int* arr, int from, int to, int pivot_pos) {
 // Additional space: O(1)
 // Complexity: O(n*log(n)) - average. O(n*n) - the worst case.
 void quicksort::recursive_call_qsort(int* arr, int from, int to, pivot_chooser pivot_chooser, int& depth, int& leaves) {
-	// TODO: Implement this method
+    // TODO: Implement this method
 
-	// Global variable in method for finding maximum of depth
-	static int maxDepth = -1;
+    // Global variable in method for finding maximum of depth
+    static int maxDepth = -1;
 
-	// Flag to detect when all recursions end
-	int currentDepth = maxDepth;
+    // Flag to detect when all recursions end
+    int currentDepth = maxDepth;
 
-	// If from is less than to
-	if (from < to) {
+    // If from is less than to
+    if (from < to) {
 
-		// Get pivot position
-		int x = pivot_chooser(from, to);
+        // Get pivot position
+        int x = pivot_chooser(from, to);
 
-		// Recompute pivot position after sorting
-		int pivot = recompute_with_pivot(arr, from, to, x);
-		
-		// If from is less than pivot - 1
-		if (from < pivot - 1) {
-			
-			// Increase depth
-			depth++;
+        // Recompute pivot position after sorting
+        int pivot = recompute_with_pivot(arr, from, to, x);
+        
+        // If from is less than pivot - 1
+        if (from < pivot - 1) {
+            
+            // Increase depth
+            depth++;
 
-			// If it is new maximum, update
-			if (depth > maxDepth) {
-				maxDepth = depth;
-			}
+            // If it is new maximum, update
+            if (depth > maxDepth) {
+                maxDepth = depth;
+            }
 
-			// Call recursive qsort for the first part of array divided by pivot
-			recursive_call_qsort(arr, from, pivot - 1, pivot_chooser, depth, leaves);
-		}
+            // Call recursive qsort for the first part of array divided by pivot
+            recursive_call_qsort(arr, from, pivot - 1, pivot_chooser, depth, leaves);
+        }
 
 
-		// If to is more than pivot
-		if (to > pivot) {
+        // If to is more than pivot
+        if (to > pivot) {
 
-			// Increase depth
-			depth++;
+            // Increase depth
+            depth++;
 
-			// If it is new maximum, update
-			if (depth > maxDepth) {
-				maxDepth = depth;
-			}
+            // If it is new maximum, update
+            if (depth > maxDepth) {
+                maxDepth = depth;
+            }
 
-			// Call recursive qsort for the second part of array divided by pivot
-			recursive_call_qsort(arr, pivot, to, pivot_chooser, depth, leaves);
-		}
+            // Call recursive qsort for the second part of array divided by pivot
+            recursive_call_qsort(arr, pivot, to, pivot_chooser, depth, leaves);
+        }
 
-		// If "current" recursion step didn't called any recursion methods then it is leaf
-		if (!(from < pivot - 1) && !(to > pivot)) {
-			leaves++;
-		}
-	}
+        // If "current" recursion step didn't called any recursion methods then it is leaf
+        if (!(from < pivot - 1) && !(to > pivot)) {
+            leaves++;
+        }
+    }
 
-	// If we end recursion, then exit
-	depth--;
-	
-	// If all recursions are finished
-	if (currentDepth == -1) {
+    // If we end recursion, then exit
+    depth--;
+    
+    // If all recursions are finished
+    if (currentDepth == -1) {
 
-		// If maxDepth is more than 0
-		if (maxDepth > 0) {
-			// Then update depth
-			depth = maxDepth;
-		}
+        // If maxDepth is more than 0
+        if (maxDepth > 0) {
+            // Then update depth
+            depth = maxDepth;
+        }
 
-		// If leaves is equal or smaller zero (in case when there are just 1 element in array)
-		if (leaves == 0) {
-			// Then increase it
-			leaves++;
-		}
-	}
+        // If leaves is equal or smaller zero (in case when there are just 1 element in array)
+        if (leaves == 0) {
+            // Then increase it
+            leaves++;
+        }
+    }
 }

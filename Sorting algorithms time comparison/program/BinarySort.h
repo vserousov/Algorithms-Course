@@ -3,6 +3,6 @@
 class BinarySort: public SortingArray
 {
 public: 
-	void sort(int a[], int n);
-	string name();
+    void sort(int a[], int n);
+    string name();
 };

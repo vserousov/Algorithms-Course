@@ -3,9 +3,9 @@
 class QuickSortLast: public SortingArray
 {
 public: 
-	void sort(int a[], int n);
-	virtual string name();
+    void sort(int a[], int n);
+    virtual string name();
 
 private:
-	void call(int a[], int left, int right);
+    void call(int a[], int left, int right);
 };

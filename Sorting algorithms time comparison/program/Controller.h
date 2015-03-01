@@ -27,15 +27,15 @@ using namespace std;
 class Controller
 {
 public:
-	static void create_array(int a[], int n, int type);
-	static string array_type(int type);
-	static void results(int a[], int n);
-	static void copy(int a[], int b[], int n);
+    static void create_array(int a[], int n, int type);
+    static string array_type(int type);
+    static void results(int a[], int n);
+    static void copy(int a[], int b[], int n);
 
 private:
-	static int rand_number(int min, int max);
-	static void swap(int a[], int i, int j);
-	static void generation(int a[], int n, int min, int max);
+    static int rand_number(int min, int max);
+    static void swap(int a[], int i, int j);
+    static void generation(int a[], int n, int min, int max);
 };
 
 #endif
